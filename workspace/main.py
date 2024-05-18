@@ -1,5 +1,6 @@
 # Folha de pagamento em python
 funcionarios = {}
+
 def lerDados():
     matricula = input("Digite a matrícula do funcionário: ")
     nome =  input("Nome do funcioário: ")
@@ -7,13 +8,14 @@ def lerDados():
     num_faltas = int(input("Quantidade de faltas no mês: "))
     salarioBruto = float(input("Salário Bruto do funcionário: "))
     return matricula,nome,cod_funcao,num_faltas,salarioBruto
+
 def adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto): # Ester
     pessoa = []
     pessoa.append(nome)
     pessoa.append(cod_funcao)
     pessoa.append(num_faltas)
     pessoa.append(salarioBruto)
-    print(pessoa)
+    
     funcionarios[matricula] = pessoa
     #return funcionarios
 
@@ -23,6 +25,8 @@ def removerFuncionario(): # Geovana
 def relatorioFuncionario(funcionarios,matricula): #de um unico funcionario - Ester
    #Matrícula, Nome, Código da Função, Salário Bruto e Salário Líquido de cada funcionário
     salario_liquido = 0
+
+    print(funcionarios)
     print("\nRelatório do Funcionário\n")
     print("Nº matrícula: "+matricula)
     print("Nome: "+ funcionarios[matricula][0])
@@ -35,19 +39,28 @@ def relatorioFuncionario(funcionarios,matricula): #de um unico funcionario - Est
     print(f"Salário Bruto: {funcionarios[matricula][3]}")
     print(f"Salário Líquido:  {salario_liquido}")
 
-def relatorioDosFuncionarios(): #de todos os funcionarios - Natã
-    print("")
+def relatorioDosFuncionarios(funcionarios): #de todos os funcionarios - Natã
+    
+    for matricula in (funcionarios.keys()):
+        print("Matricula: ", matricula,"\nNome: ", funcionarios[matricula][0], ", Código da função: ", funcionarios[matricula][1], ", Faltas: ", funcionarios[matricula][2], ", Salário bruto: ", funcionarios[matricula][3],"\n")
     
 def maiorSalario(): #Infos funcionario com maior salario - Geovana
     print("")
     
-def maisFaltas(): #Infos funcionario com mais faltas - Natã
-    print("")
+def maisFaltas(funcionarios): #Infos funcionario com mais faltas - Natã
+    mais_faltas = 0
+
+    for matricula in (funcionarios.keys()):
+        if(mais_faltas < funcionarios[matricula][2]):
+            mais_faltas = funcionarios[matricula][2]
+            matricula_func = matricula
+
+    print("Matricula: ", matricula_func,"\nNome: ", funcionarios[matricula_func][0], ", Código da função: ", funcionarios[matricula_func][1], ", Faltas: ", funcionarios[matricula_func][2], ", Salário bruto: ", funcionarios[matricula_func][3],"\n")
 
 print("O que deseja fazer?\n","")
 opcao = int(input("1-Adicionar funcionario\n2-Remover funcionario\n3-Ver relatorio do funcionario\n4-Ver relatorios dos funcionarios\n5-Ver o maior salario\n6-Ver funcionario com mais faltas\n"))
+
 while opcao !=0:
-    
     if(opcao == 1):
         matricula,nome,cod_funcao,num_faltas,salarioBruto = lerDados()
         adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto)
@@ -56,18 +69,17 @@ while opcao !=0:
     elif(opcao == 3):
         matricula = input("Por Favor digite nº da matricula do funcionário que deseja ver relatório: ")
         relatorioFuncionario(funcionarios,matricula)
-
     elif(opcao == 4):
-        funcionarios = adicionarFuncionario()
-        relatorioDosFuncionarios()
+        relatorioDosFuncionarios(funcionarios)
     elif(opcao == 5):
         maiorSalario()
     elif(opcao == 6):
-        maisFaltas()
+        maisFaltas(funcionarios)
     else:
         print("Essa opcao não existe!")
     print("O que deseja fazer?\n","")
     opcao = int(input("1-Adicionar funcionario\n2-Remover funcionario\n3-Ver relatorio do funcionario\n4-Ver relatorios dos funcionarios\n5-Ver o maior salario\n6-Ver funcionario com mais faltas\n"))
+
 # Duvidas
 # A matricula deve ser int ou string?
 #posso armazenar mais dados ou precisa ser somente os dados listados?
