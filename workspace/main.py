@@ -45,10 +45,23 @@ def relatorioFuncionario(funcionarios,matricula): #de um unico funcionario - Est
     print(f"Salário Líquido:  {salario_liquido}")
 
 def relatorioDosFuncionarios(funcionarios): #de todos os funcionarios - Natã
-    
+
     for matricula in (funcionarios.keys()):
-        print("Matricula: ", matricula,"\nNome: ", funcionarios[matricula][0], ", Código da função: ", funcionarios[matricula][1], ", Faltas: ", funcionarios[matricula][2], ", Salário bruto: ", funcionarios[matricula][3],"\n")
-    
+        salario_descontado = funcionarios[matricula][3]-(((funcionarios[matricula][3])/30)*funcionarios[matricula][2])
+
+        if (funcionarios[matricula][3] <= 2259.2):
+            salario_liquido = salario_descontado
+        elif(2259.21 <= funcionarios[matricula][3] <= 2828.65):
+            salario_liquido = salario_descontado-(salario_descontado*0.075)
+        elif(2828.66 <= funcionarios[matricula][3] <= 3751.05):
+            salario_liquido = salario_descontado-(salario_descontado*0.15)
+        elif(3751.06 <= funcionarios[matricula][3] <= 4664.68):
+            salario_liquido = salario_descontado-(salario_descontado*0.225)
+        else:
+            salario_liquido = salario_descontado-(salario_descontado*0.275)
+
+        print("\nMatricula: ", matricula,",Nome: ", funcionarios[matricula][0], ",Código da função: ", funcionarios[matricula][1], ",Faltas: ", funcionarios[matricula][2], ",Salário bruto: ", funcionarios[matricula][3],",Salário liquido: ",salario_liquido,"\n")
+
 def maiorSalario(funcionarios): #Infos funcionario com maior salario - Geovana
     maior_salario = 0
 
@@ -59,7 +72,6 @@ def maiorSalario(funcionarios): #Infos funcionario com maior salario - Geovana
 
     print(f"Matricula: {matriculafuncionario}, {funcionarios[matriculafuncionario][0]}, Código da função: {funcionarios[matriculafuncionario][1]}, Faltas: {funcionarios[matriculafuncionario][2]}, Salário bruto: {funcionarios[matriculafuncionario][3]} ")
             
-
     
 def maisFaltas(funcionarios): #Infos funcionario com mais faltas - Natã
     mais_faltas = 0
@@ -91,8 +103,8 @@ while opcao !=0:
         maisFaltas(funcionarios)
     else:
         print("Essa opcao não existe!")
-    print("O que deseja fazer?\n","")
-    opcao = int(input("1-Adicionar funcionario\n2-Remover funcionario\n3-Ver relatorio do funcionario\n4-Ver relatorios dos funcionarios\n5-Ver o maior salario\n6-Ver funcionario com mais faltas\n"))
+        
+    opcao = int(input("O que deseja fazer?\n\n1-Adicionar funcionario\n2-Remover funcionario\n3-Ver relatorio do funcionario\n4-Ver relatorios dos funcionarios\n5-Ver o maior salario\n6-Ver funcionario com mais faltas\n"))
 
 # Duvidas
 # A matricula deve ser int ou string?
