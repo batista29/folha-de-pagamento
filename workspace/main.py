@@ -19,9 +19,14 @@ def adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto): # E
     funcionarios[matricula] = pessoa
     #return funcionarios
 
-def removerFuncionario(): # Geovana
-    print("")
-    
+def removerFuncionario(funcionarios): #Geovana
+    excluir = input("Digite a matricula do funcionario que deseja remover: ")
+    if excluir in funcionarios:
+        del funcionarios[excluir]
+        print(f"Funcionário com matrícula {excluir} removido com sucesso.")
+    else:
+        print(f"Funcionário com matrícula {excluir} não encontrado.")
+
 def relatorioFuncionario(funcionarios,matricula): #de um unico funcionario - Ester
    #Matrícula, Nome, Código da Função, Salário Bruto e Salário Líquido de cada funcionário
     salario_liquido = 0
@@ -44,8 +49,17 @@ def relatorioDosFuncionarios(funcionarios): #de todos os funcionarios - Natã
     for matricula in (funcionarios.keys()):
         print("Matricula: ", matricula,"\nNome: ", funcionarios[matricula][0], ", Código da função: ", funcionarios[matricula][1], ", Faltas: ", funcionarios[matricula][2], ", Salário bruto: ", funcionarios[matricula][3],"\n")
     
-def maiorSalario(): #Infos funcionario com maior salario - Geovana
-    print("")
+def maiorSalario(funcionarios): #Infos funcionario com maior salario - Geovana
+    maior_salario = 0
+
+    for matricula in (funcionarios.keys()):
+        if (funcionarios[matricula][3] > maior_salario):
+            maior_salario = funcionarios[matricula][3]
+            matriculafuncionario = matricula
+
+    print(f"Matricula: {matriculafuncionario}, {funcionarios[matriculafuncionario][0]}, Código da função: {funcionarios[matriculafuncionario][1]}, Faltas: {funcionarios[matriculafuncionario][2]}, Salário bruto: {funcionarios[matriculafuncionario][3]} ")
+            
+
     
 def maisFaltas(funcionarios): #Infos funcionario com mais faltas - Natã
     mais_faltas = 0
@@ -65,14 +79,14 @@ while opcao !=0:
         matricula,nome,cod_funcao,num_faltas,salarioBruto = lerDados()
         adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto)
     elif(opcao == 2):
-        removerFuncionario(funcionarios,matricula)
+        removerFuncionario(funcionarios)
     elif(opcao == 3):
         matricula = input("Por Favor digite nº da matricula do funcionário que deseja ver relatório: ")
         relatorioFuncionario(funcionarios,matricula)
     elif(opcao == 4):
         relatorioDosFuncionarios(funcionarios)
     elif(opcao == 5):
-        maiorSalario()
+        maiorSalario(funcionarios)
     elif(opcao == 6):
         maisFaltas(funcionarios)
     else:
