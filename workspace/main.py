@@ -13,13 +13,12 @@ def lerDados():
         desc_faltas = (sal_fixo/30)*num_faltas
         salarioBruto = (sal_fixo+comissao)- desc_faltas
     elif cod_funcao == 102:
-       sal_fixo = float(input("Salário do funcionário (R$ 2150 - 6950): "))
-       while sal_fixo < 2150 or sal_fixo >6950:
-           print("Faixa salarial é de R$2150 a R$6950")
-           sal_fixo = float(input("Salário do funcionário (R$ 2150 - 6950): "))
-
-    
-    
+        sal_fixo = float(input("Salário do funcionário (R$ 2150 - 6950): "))
+        while sal_fixo < 2150 or sal_fixo > 6950:
+            print("Faixa salarial é de R$2150 a R$6950")
+            sal_fixo = float(input("Salário do funcionário (R$ 2150 - 6950): "))
+        salarioBruto = sal_fixo
+        
     return matricula,nome,cod_funcao,num_faltas,salarioBruto
 
 def adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto): # Ester
