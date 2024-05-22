@@ -47,6 +47,7 @@ def relatorioFuncionario(funcionarios,matricula): #de um unico funcionario - Est
 def relatorioDosFuncionarios(funcionarios): #de todos os funcionarios - Natã
 
     for matricula in (funcionarios.keys()):
+        #verificar se a formula esta correta
         salario_descontado = funcionarios[matricula][3]-(((funcionarios[matricula][3])/30)*funcionarios[matricula][2])
 
         if (funcionarios[matricula][3] <= 2259.2):
