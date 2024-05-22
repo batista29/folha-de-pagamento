@@ -2,11 +2,24 @@
 funcionarios = {}
 
 def lerDados():
-    matricula = input("Digite a matrícula do funcionário: ")
+    matricula = int(input("Digite a matrícula do funcionário: "))
     nome =  input("Nome do funcioário: ")
     cod_funcao = int(input("Digite o código da função do funcionário: "))
     num_faltas = int(input("Quantidade de faltas no mês: "))
-    salarioBruto = float(input("Salário Bruto do funcionário: "))
+    if cod_funcao == 101:
+        sal_fixo = 1500
+        valor_venda = int(input("Digite o valor de vendas no mês:"))
+        comissao = valor_venda*0.09 
+        desc_faltas = (sal_fixo/30)*num_faltas
+        salarioBruto = (sal_fixo+comissao)- desc_faltas
+    elif cod_funcao == 102:
+       sal_fixo = float(input("Salário do funcionário (R$ 2150 - 6950): "))
+       while sal_fixo < 2150 or sal_fixo >6950:
+           print("Faixa salarial é de R$2150 a R$6950")
+           sal_fixo = float(input("Salário do funcionário (R$ 2150 - 6950): "))
+
+    
+    
     return matricula,nome,cod_funcao,num_faltas,salarioBruto
 
 def adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto): # Ester
@@ -109,5 +122,6 @@ while opcao !=0:
 
 # Duvidas
 # A matricula deve ser int ou string?
+# como calcular a comissão de venda dos vendedores?   
 #posso armazenar mais dados ou precisa ser somente os dados listados?
 # como funciona o salário bruto?
