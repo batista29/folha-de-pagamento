@@ -1,23 +1,27 @@
 # Folha de pagamento em python
 funcionarios = {}
 
-def lerDados():
+def lerDados(funcionarios):
     matricula = int(input("Digite a matrícula do funcionário: "))
-    nome =  input("Nome do funcioário: ")
-    cod_funcao = int(input("Digite o código da função do funcionário: "))
-    num_faltas = int(input("Quantidade de faltas no mês: "))
-    if cod_funcao == 101:
-        sal_fixo = 1500
-        valor_venda = int(input("Digite o valor de vendas no mês:"))
-        comissao = valor_venda*0.09 
-        desc_faltas = (sal_fixo/30)*num_faltas
-        salarioBruto = (sal_fixo+comissao)- desc_faltas
-    elif cod_funcao == 102:
-        sal_fixo = float(input("Salário do funcionário (R$ 2150 - 6950): "))
-        while sal_fixo < 2150 or sal_fixo > 6950:
-            print("Faixa salarial é de R$2150 a R$6950")
+
+    while(matricula in funcionarios.keys()):
+        matricula = int(input("Essa matricula já existe, digite outra: "))
+    else:
+        nome =  input("Nome do funcioário: ")
+        cod_funcao = int(input("Digite o código da função do funcionário: "))
+        num_faltas = int(input("Quantidade de faltas no mês: "))
+        if cod_funcao == 101:
+            sal_fixo = 1500
+            valor_venda = int(input("Digite o valor de vendas no mês:"))
+            comissao = valor_venda*0.09 
+            desc_faltas = (sal_fixo/30)*num_faltas
+            salarioBruto = (sal_fixo+comissao)- desc_faltas
+        elif cod_funcao == 102:
             sal_fixo = float(input("Salário do funcionário (R$ 2150 - 6950): "))
-        salarioBruto = sal_fixo
+            while sal_fixo < 2150 or sal_fixo > 6950:
+                print("Faixa salarial é de R$2150 a R$6950")
+                sal_fixo = float(input("Salário do funcionário (R$ 2150 - 6950): "))
+            salarioBruto = sal_fixo
         
     return matricula,nome,cod_funcao,num_faltas,salarioBruto
 
@@ -62,13 +66,13 @@ def relatorioDosFuncionarios(funcionarios): #de todos os funcionarios - Natã
         #verificar se a formula esta correta
         salario_descontado = funcionarios[matricula][3]-(((funcionarios[matricula][3])/30)*funcionarios[matricula][2])
 
-        if (funcionarios[matricula][3] <= 2259.2):
+        if (salario_descontado <= 2259.2):
             salario_liquido = salario_descontado
-        elif(2259.21 <= funcionarios[matricula][3] <= 2828.65):
+        elif(2259.21 <= salario_descontado <= 2828.65):
             salario_liquido = salario_descontado-(salario_descontado*0.075)
-        elif(2828.66 <= funcionarios[matricula][3] <= 3751.05):
+        elif(2828.66 <= salario_descontado <= 3751.05):
             salario_liquido = salario_descontado-(salario_descontado*0.15)
-        elif(3751.06 <= funcionarios[matricula][3] <= 4664.68):
+        elif(3751.06 <= salario_descontado <= 4664.68):
             salario_liquido = salario_descontado-(salario_descontado*0.225)
         else:
             salario_liquido = salario_descontado-(salario_descontado*0.275)
@@ -101,7 +105,7 @@ opcao = int(input("1-Adicionar funcionario\n2-Remover funcionario\n3-Ver relator
 
 while opcao !=0:
     if(opcao == 1):
-        matricula,nome,cod_funcao,num_faltas,salarioBruto = lerDados()
+        matricula,nome,cod_funcao,num_faltas,salarioBruto = lerDados(funcionarios)
         adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto)
     elif(opcao == 2):
         removerFuncionario(funcionarios)
