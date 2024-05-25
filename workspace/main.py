@@ -14,8 +14,7 @@ def lerDados(funcionarios):
             sal_fixo = 1500
             valor_venda = int(input("Digite o valor de vendas no mês:"))
             comissao = valor_venda*0.09 
-            desc_faltas = (sal_fixo/30)*num_faltas
-            salarioBruto = (sal_fixo+comissao)- desc_faltas
+            salarioBruto = (sal_fixo+comissao)
         elif cod_funcao == 102:
             sal_fixo = float(input("Salário do funcionário (R$ 2150 - 6950): "))
             while sal_fixo < 2150 or sal_fixo > 6950:
@@ -76,8 +75,9 @@ def relatorioDosFuncionarios(funcionarios): #de todos os funcionarios - Natã
             salario_liquido = salario_descontado-(salario_descontado*0.225)
         else:
             salario_liquido = salario_descontado-(salario_descontado*0.275)
+        porcentagem_desconto = 100-((salario_liquido/funcionarios[matricula][3])*100)
 
-        print("\nMatricula: ", matricula,",Nome: ", funcionarios[matricula][0], ",Código da função: ", funcionarios[matricula][1], ",Faltas: ", funcionarios[matricula][2], ",Salário bruto: ", funcionarios[matricula][3],",Salário liquido: ",salario_liquido,"\n")
+        print(f"Matricula: {matricula}, Nome: {funcionarios[matricula][0]}, Código da função: {funcionarios[matricula][1]},Faltas: {funcionarios[matricula][2]}, Salário bruto: {funcionarios[matricula][3]}, Salário liquido: {salario_liquido}, Porcentagem de desconto: {porcentagem_desconto}%\n")
 
 def maiorSalario(funcionarios): #Infos funcionario com maior salario - Geovana
     maior_salario = 0
