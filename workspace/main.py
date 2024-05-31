@@ -13,7 +13,7 @@ def lerDados(funcionarios):#Ester
     matricula = int(input("Digite a matrícula do funcionário: "))
 
     while(matricula in funcionarios.keys()):
-        matricula = int(input("Esse nº de matrícula já existe, digite novamente:  "))
+        matricula = int(input("Esse nº de matrícula já existe, digite outra:  "))
     else:
         nome =  input("Nome do funcioário: ")
         cod_funcao = int(input("Digite o código da função do funcionário (101 ou 102): "))
