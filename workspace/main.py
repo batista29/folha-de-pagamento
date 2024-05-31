@@ -1,6 +1,7 @@
 # Folha de pagamento em python
 funcionarios = {}
 salarioLiq = 0
+
 def descontoPorFaltas(num_faltas,salarioBruto,salarioFixo): #Ester
     if(num_faltas != 0):
         salarioBruto = salarioBruto - (num_faltas*(salarioFixo/30))
@@ -15,7 +16,7 @@ def lerDados(funcionarios):#Ester
         matricula = int(input("Esse nº de matrícula já existe, digite novamente:  "))
     else:
         nome =  input("Nome do funcioário: ")
-        cod_funcao = int(input("Digite o código da função do funcionário: "))
+        cod_funcao = int(input("Digite o código da função do funcionário (101 ou 102): "))
         if cod_funcao == 101:
             sal_fixo = 1500
             volume_venda = float(input("Digite o valor de vendas no mês:"))
@@ -39,8 +40,9 @@ def adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto): # E
     pessoa.append(salarioBruto)
     
     funcionarios[matricula] = pessoa
-    print(funcionarios)
-    #return funcionarios
+    print("Funcionário adicionado com sucesso")
+    return funcionarios
+
 def salarioLiquido(salarioBruto):#Ester
     if salarioBruto <=2259.20:
         salarioLiq = salarioBruto
@@ -108,19 +110,19 @@ def maiorSalario(funcionarios): #Infos funcionario com maior salario - Geovana
 
     print(f"Matricula: {matriculafuncionario}, {funcionarios[matriculafuncionario][0]}, Código da função: {funcionarios[matriculafuncionario][1]}, Faltas: {funcionarios[matriculafuncionario][2]}, Salário bruto: {funcionarios[matriculafuncionario][3]}, Salário Líquido: {salario_liquido} ")
             
-    
 def maisFaltas(funcionarios): #Infos funcionario com mais faltas - Natã
-    mais_faltas = 0
+    maior_num_faltas = 0
 
     for matricula in (funcionarios.keys()):
-        if(mais_faltas < funcionarios[matricula][2]):
-            mais_faltas = funcionarios[matricula][2]
-            matricula_func = matricula
-
-    print("Matricula: ", matricula_func,"\nNome: ", funcionarios[matricula_func][0], ", Código da função: ", funcionarios[matricula_func][1], ", Faltas: ", funcionarios[matricula_func][2], ", Salário bruto: ", funcionarios[matricula_func][3],"\n")
+        if(maior_num_faltas < funcionarios[matricula][2]):
+            maior_num_faltas = funcionarios[matricula][2]
+    print("Funcionário(s) com mais faltas:")
+    for matricula in (funcionarios.keys()):
+        if(maior_num_faltas == funcionarios[matricula][2]):
+            print("Matricula: ", matricula,", Nome: ", funcionarios[matricula][0], ", Código da função: ", funcionarios[matricula][1], ", Faltas: ", funcionarios[matricula][2], ", Salário bruto: ", funcionarios[matricula][3])
 
 print("MENU\n")
-opcao = int(input("1-Adicionar funcionario\n2-Remover funcionario\n3-Ver relatorio do funcionario\n4-Ver relatorios dos funcionarios\n5-Ver o maior salario\n6-Ver funcionario com mais faltas\n\nEscolha uma das opções acima: "))
+opcao = int(input("1-Adicionar funcionario\n2-Remover funcionario\n3-Ver relatorio do funcionario\n4-Ver relatorios dos funcionarios\n5-Ver o maior salario\n6-Ver funcionario com mais faltas\n\nEscolha uma das opções acima: \n"))
 
 while opcao !=0:
     if(opcao == 1):
@@ -145,7 +147,7 @@ while opcao !=0:
         print("Essa opcao não existe!")
         
     print("MENU\n")
-    opcao = int(input("1-Adicionar funcionario\n2-Remover funcionario\n3-Ver relatorio do funcionario\n4-Ver relatorios dos funcionarios\n5-Ver o maior salario\n6-Ver funcionario com mais faltas\n\nEscolha uma das opções acima: "))
+    opcao = int(input("1-Adicionar funcionario\n2-Remover funcionario\n3-Ver relatorio do funcionario\n4-Ver relatorios dos funcionarios\n5-Ver o maior salario\n6-Ver funcionario com mais faltas\n\nEscolha uma das opções acima: \n"))
 
 # Duvidas
 # O que fazer se tiver funcionários com o mesmo numero de faltas?
