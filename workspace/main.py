@@ -2,14 +2,14 @@
 funcionarios = {}
 salarioLiq = 0
 
-def descontoPorFaltas(num_faltas,salarioBruto,salarioFixo): #Ester
+def descontoPorFaltas(num_faltas,salarioBruto,salarioFixo):
     if(num_faltas != 0):
         salarioBruto = salarioBruto - (num_faltas*(salarioFixo/30))
     else:
         salarioBruto = salarioBruto
     return salarioBruto 
 
-def lerDados(funcionarios):#Ester
+def lerDados(funcionarios):
     matricula = int(input("Digite a matrícula do funcionário: "))
 
     while(matricula in funcionarios.keys()):
@@ -32,7 +32,7 @@ def lerDados(funcionarios):#Ester
         salarioBruto = descontoPorFaltas(num_faltas,salarioBruto,sal_fixo)
     return matricula,nome,cod_funcao,num_faltas,salarioBruto
 
-def adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto): # Ester
+def adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto):
     pessoa = []
     pessoa.append(nome)
     pessoa.append(cod_funcao)
@@ -43,7 +43,7 @@ def adicionarFuncionario(matricula,nome,cod_funcao,num_faltas,salarioBruto): # E
     print("Funcionário adicionado com sucesso")
     return funcionarios
 
-def salarioLiquido(salarioBruto):#Ester
+def salarioLiquido(salarioBruto):
     if salarioBruto <=2259.20:
         salarioLiq = salarioBruto
         percentual = 0
@@ -65,7 +65,7 @@ def salarioLiquido(salarioBruto):#Ester
         salarioLiq = salarioBruto - imposto
     return salarioLiq,percentual
 
-def removerFuncionario(funcionarios): #Geovana
+def removerFuncionario(funcionarios): 
     excluir = int(input("Digite a matricula do funcionario que deseja remover: "))
     if excluir in funcionarios.keys():
             del funcionarios[excluir]
@@ -73,8 +73,7 @@ def removerFuncionario(funcionarios): #Geovana
     else:
             print(f"Funcionário com matrícula {excluir} não encontrado.")
 
-def relatorioFuncionario(funcionarios,matricula,salario_liquido,percentual): #de um unico funcionario - Ester
-   #Matrícula, Nome, Código da Função, Salário Bruto e Salário Líquido de cada funcionário
+def relatorioFuncionario(funcionarios,matricula,salario_liquido,percentual): 
 
     print(funcionarios)
     print("\nFolha de pagamento\n")
@@ -90,14 +89,14 @@ def relatorioFuncionario(funcionarios,matricula,salario_liquido,percentual): #de
     print(f"Salário Líquido:  {salario_liquido}")
     print(f"Alíquota:  {percentual}")
 
-def relatorioDosFuncionarios(funcionarios): #de todos os funcionarios - Natã
+def relatorioDosFuncionarios(funcionarios): 
 
     for matricula in (funcionarios.keys()):
         salarioBruto = funcionarios[matricula][3]
         salario_liquido,porcentagem_desconto = salarioLiquido(salarioBruto)
         print(f"Matricula: {matricula}, Nome: {funcionarios[matricula][0]}, Código da função: {funcionarios[matricula][1]},Faltas: {funcionarios[matricula][2]}, Salário bruto: {funcionarios[matricula][3]}, Salário liquido: {salario_liquido}, Porcentagem de desconto: {porcentagem_desconto}%\n")
 
-def maiorSalario(funcionarios): #Infos funcionario com maior salario - Geovana
+def maiorSalario(funcionarios): 
     maior_salario = 0
 
     for matricula in (funcionarios.keys()):
@@ -110,7 +109,7 @@ def maiorSalario(funcionarios): #Infos funcionario com maior salario - Geovana
 
     print(f"Matricula: {matriculafuncionario}, {funcionarios[matriculafuncionario][0]}, Código da função: {funcionarios[matriculafuncionario][1]}, Faltas: {funcionarios[matriculafuncionario][2]}, Salário bruto: {funcionarios[matriculafuncionario][3]}, Salário Líquido: {salario_liquido} ")
             
-def maisFaltas(funcionarios): #Infos funcionario com mais faltas - Natã
+def maisFaltas(funcionarios): 
     maior_num_faltas = 0
 
     for matricula in (funcionarios.keys()):
@@ -148,6 +147,3 @@ while opcao !=0:
         
     print("MENU\n")
     opcao = int(input("1-Adicionar funcionario\n2-Remover funcionario\n3-Ver relatorio do funcionario\n4-Ver relatorios dos funcionarios\n5-Ver o maior salario\n6-Ver funcionario com mais faltas\n\nEscolha uma das opções acima: \n"))
-
-# Duvidas
-# O que fazer se tiver funcionários com o mesmo numero de faltas?
